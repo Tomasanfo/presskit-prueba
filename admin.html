@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Panel del press kit</title>
+<style>
+:root{--bg:#0b0b0b;--card:#161616;--line:#2a2a2a;--tx:#f4f4f4;--mut:#9a9a9a;--ac:#ff2d46;--gr:#4cd37b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:env(safe-area-inset-top) 0 90px}
+.wrap{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:6px 0 2px;color:var(--ac)}
+h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:22px 0 8px}
+p.s{color:var(--mut);font-size:13px;margin:4px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+input[type=text],input[type=password],textarea{width:100%;background:#0f0f0f;color:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px;margin-top:4px}
+textarea{resize:vertical;min-height:80px}
+input[type=color]{width:64px;height:42px;padding:3px;margin-top:4px;background:#0f0f0f;border:1.5px solid var(--line);border-radius:10px}
+input:focus,textarea:focus{outline:none;border-color:var(--ac)}
+label{display:block;font-size:12px;color:var(--mut);margin-top:12px}
+label small{display:block;font-size:12px;color:#777}
+button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 16px;background:var(--ac);color:#fff;cursor:pointer;touch-action:manipulation}
+button.g{background:#262626;color:var(--tx);font-weight:600}
+button:disabled{opacity:.3}
+details.card{padding:0}
+summary{padding:14px;font-weight:700;cursor:pointer;list-style:none}
+summary::after{content:"▾";float:right;color:var(--mut)}
+details[open] summary::after{content:"▴"}
+details.dirty{border-color:var(--ac)}
+details.dirty summary::before{content:"● ";color:var(--ac)}
+.body{padding:0 14px 14px}
+.img{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.img img,.ph img{width:72px;height:72px;object-fit:cover;border-radius:8px;background:#0f0f0f}
+.img input[type=file]{flex:1;min-width:180px;color:var(--mut);font-size:13px}
+.ph{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#101010;border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:10px}
+.ph .g2{flex:1;min-width:170px}
+.ph .g2 input{margin:0 0 6px;padding:8px 10px;font-size:14px}
+.mv{display:flex;gap:8px}
+.mv button{padding:10px 14px;font-size:16px;line-height:1;min-width:46px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#111;border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:none}
+.bar.on{display:block}
+.bar .in{max-width:640px;margin:0 auto;display:flex;gap:10px;align-items:center}
+.bar span{flex:1;font-size:13px;color:var(--mut)}
+#msg{position:fixed;left:16px;right:16px;top:calc(10px + env(safe-area-inset-top));max-width:608px;margin:0 auto;padding:12px 14px;border-radius:12px;font-weight:600;display:none;z-index:9}
+#msg.ok{background:#12351f;color:#8ff0b0;display:block}
+#msg.er{background:#3a1515;color:#ff9a9a;display:block}
+.hide{display:none}
+ol{padding-left:18px;color:var(--mut);font-size:13px}
+ol b{color:var(--tx)}
+a{color:var(--ac)}
+</style>
+</head>
+<body>
+<div id="msg"></div>
+<div class="wrap">
+  <h1>🎧 Panel del press kit</h1>
+
+  <!-- LOGIN -->
+  <div id="login" class="hide">
+    <p class="s">Se configura una sola vez en este dispositivo. Los datos quedan guardados solo en este navegador.</p>
+    <div class="card">
+      <label>Repositorio (usuario/repositorio)</label>
+      <input id="repo" type="text" placeholder="miusuario/mi-presskit" autocapitalize="none" autocorrect="off">
+      <label>Token de GitHub</label>
+      <input id="tok" type="password" placeholder="github_pat_..." autocapitalize="none" autocorrect="off">
+      <div style="margin-top:14px"><button id="go">Entrar</button></div>
+    </div>
+    <h2>Cómo sacar el token</h2>
+    <ol>
+      <li>GitHub → tu foto → <b>Settings</b> → <b>Developer settings</b></li>
+      <li><b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b></li>
+      <li><b>Repository access</b>: Only select repositories → elegí el repo del press kit</li>
+      <li><b>Permissions → Contents: Read and write</b></li>
+      <li>Generate, copiá el token y pegalo arriba</li>
+    </ol>
+  </div>
+
+  <!-- PANEL -->
+  <div id="panel" class="hide">
+    <p class="s">Editá lo que quieras y tocá <b>Publicar</b>. En 1–2 minutos lo ve todo el mundo. Si dejás una sección vacía, no se muestra en el sitio. <a href="index.html" target="_blank">Ver el sitio</a></p>
+    <div id="f"></div>
+    <div style="margin-top:18px"><button class="g" id="out">Cerrar sesión en este dispositivo</button></div>
+  </div>
+</div>
+
+<div class="bar" id="bar"><div class="in"><span id="cnt"></span><button class="g" id="undo">Descartar</button><button id="save">Publicar</button></div></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const LS = k => { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } };
+const LSset = (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} };
+const b64enc = s => btoa(unescape(encodeURIComponent(s)));
+const b64dec = s => decodeURIComponent(escape(atob(s.replace(/\s/g, ""))));
+/* Contenido original: se usa si el repositorio todavía no tiene data/content.js */
+const BASE = {
+  "nombre": "Franco Sánchez",
+  "lema": "Indie Dance oscuro. Groove pesado. Drops bien marcados.",
+  "intro": "DJ de General Roca, con base en el Alto Valle.",
+  "acento": "#ff2d46",
+  "titulo": "Franco Sánchez | DJ Indie Dance | Press Kit",
+  "descripcion": "Franco Sánchez, DJ de General Roca (Alto Valle). Indie Dance oscuro, groove pesado y drops bien marcados.",
+  "heroFoto": "assets/hero.jpg",
+  "bioFoto": "assets/bio.jpg",
+  "bio": [
+    "Franco Sánchez es un DJ de General Roca, con base en el Alto Valle, con un sonido centrado en el Indie Dance oscuro, groove pesado y drops bien marcados.",
+    "También incursiona en el Progressive House y el Melodic Techno, aunque su identidad se apoya principalmente en ritmos oscuros, sonidos profundos y una fuerte presencia del groove.",
+    "Ha sumado experiencias en clubes del Alto Valle y presentaciones como invitado, además de experiencias en Buenos Aires Capital. Ha trabajado junto a productoras como Black Beat, Natural Swing, B2B Sessions y One More, y ha compartido cabina con artistas como Martin Angrissano, Caitto, Gueva, Mayro y Nicolás Van Orton.",
+    "Su propuesta busca un balance entre groove, energía y una estética underground, consolidando una identidad propia dentro de la escena regional."
+  ],
+  "datos": [
+    {
+      "t": "Sonido",
+      "d": "Indie Dance oscuro"
+    },
+    {
+      "t": "También toca",
+      "d": "Progressive House y Melodic Techno"
+    },
+    {
+      "t": "Base",
+      "d": "General Roca, Alto Valle"
+    },
+    {
+      "t": "Presentaciones",
+      "d": "Clubes del Alto Valle y Buenos Aires Capital"
+    }
+  ],
+  "productoras": [
+    "Black Beat",
+    "Natural Swing",
+    "B2B Sessions",
+    "One More"
+  ],
+  "lineup": [
+    "Martin Angrissano",
+    "Caitto",
+    "Gueva",
+    "Mayro",
+    "Nicolás Van Orton"
+  ],
+  "soundcloud": "https://soundcloud.com/franco-sanchez-24",
+  "videos": [
+    "ddVLRmnK3dw",
+    "ulpDMl9_QSM"
+  ],
+  "canales": [
+    {
+      "nombre": "Natural Swing",
+      "link": ""
+    },
+    {
+      "nombre": "Black Beat",
+      "link": ""
+    },
+    {
+      "nombre": "B2B Sessions",
+      "link": ""
+    },
+    {
+      "nombre": "One More",
+      "link": ""
+    }
+  ],
+  "fotos": [
+    {
+      "src": "assets/g-pantallas.jpg",
+      "alt": "Franco Sánchez en cabina con su nombre en las pantallas",
+      "pos": ""
+    },
+    {
+      "src": "assets/g-verde.jpg",
+      "alt": "Franco Sánchez mezclando con luz verde",
+      "pos": ""
+    },
+    {
+      "src": "assets/g-azul.jpg",
+      "alt": "Franco Sánchez en cabina con luces azules",
+      "pos": ""
+    },
+    {
+      "src": "assets/g-exterior.jpg",
+      "alt": "Franco Sánchez mezclando al aire libre de noche",
+      "pos": "center 42%"
+    }
+  ],
+  "email": "fsanchezbooking@gmail.com",
+  "instagram": "https://www.instagram.com/frsanchez_/",
+  "footer": "© 2026 Franco Sánchez",
+  "textos": {
+    "bioProductoras": "Productoras con las que trabajó",
+    "bioLineup": "Compartió cabina con",
+    "scSub": "Sets y producciones de Franco, directo desde su perfil.",
+    "videosSub": "Franco en cabina. Tocá el video para reproducirlo.",
+    "canalesSub": "Sus sets y producciones, subidos por las productoras con las que trabajó.",
+    "fotosSub": "En cabina.",
+    "contactoSub": "Fechas, colaboraciones y prensa."
+  }
+};
+const FILE = "data/content.js";   // el sitio lee este archivo (funciona también sin servidor)
+const parse = t => JSON.parse(t.slice(t.indexOf("{"), t.lastIndexOf("}") + 1));
+
+let repo = LS("pk_repo"), token = LS("pk_tok");
+let D = {}, O = "", sha = "", msgT, legacy = false;
+
+function say(t, ok = true) {
+  const m = $("#msg"); m.textContent = t; m.className = ok ? "ok" : "er";
+  clearTimeout(msgT); msgT = setTimeout(() => (m.className = ""), ok ? 4500 : 7000);
+}
+const api = (path, opt = {}) =>
+  fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+    ...opt,
+    headers: { Authorization: "Bearer " + token, Accept: "application/vnd.github+json", ...(opt.headers || {}) },
+    cache: "no-store"
+  });
+
+async function load() {
+  $("#login").classList.add("hide"); $("#panel").classList.add("hide");
+  try {
+    let r = await api(FILE + "?t=" + Date.now());
+    legacy = false;
+    if (r.status === 404) { r = await api("data/content.json?t=" + Date.now()); legacy = r.ok; }   // versión anterior: se migra al publicar
+    if (r.status === 401) throw new Error("Token inválido o vencido.");
+    if (r.status === 404) {   // el repo no tiene el archivo todavía: arranca con el contenido original
+      const rr = await fetch("https://api.github.com/repos/" + repo, { headers: { Authorization: "Bearer " + token } });
+      if (!rr.ok) throw new Error("No puedo acceder a ese repositorio. Revisá el nombre y que el token tenga permiso.");
+      D = JSON.parse(JSON.stringify(BASE)); sha = ""; O = "{}"; legacy = false;
+      build(); $("#panel").classList.remove("hide");
+      return say("No encontré data/content.js en el repo. Cargué tu contenido original: tocá Publicar para crearlo.");
+    }
+    if (!r.ok) throw new Error("GitHub respondió " + r.status);
+    const j = await r.json();
+    sha = legacy ? "" : j.sha; D = parse(b64dec(j.content)); O = JSON.stringify(D);
+    build(); $("#panel").classList.remove("hide");
+  } catch (e) {
+    say(e.message || "No se pudo cargar", false);
+    $("#repo").value = repo; $("#login").classList.remove("hide");
+  }
+}
+
+/* ── Helpers ── */
+const h = (t, a = {}, ...k) => {
+  const n = document.createElement(t);
+  for (const x in a) x.startsWith("on") ? (n[x] = a[x]) : n.setAttribute(x, a[x]);
+  n.append(...k); return n;
+};
+const get = k => k.split(".").reduce((o, p) => o && o[p], D);
+const set = (k, v) => { const a = k.split("."), l = a.pop(); let o = D; a.forEach(p => (o = o[p] = o[p] || {})); o[l] = v; refresh(); };
+const top = k => k.split(".")[0];
+
+/* Las fotos se achican a 1600 px; se suben a assets/ recién al Publicar */
+const shrink = f => new Promise(r => {
+  const i = new Image();
+  i.onload = () => {
+    const k = Math.min(1, 1600 / Math.max(i.width, i.height)), c = document.createElement("canvas");
+    c.width = i.width * k; c.height = i.height * k;
+    c.getContext("2d").drawImage(i, 0, 0, c.width, c.height);
+    r(c.toDataURL("image/jpeg", 0.82));
+  };
+  i.src = URL.createObjectURL(f);
+});
+
+/* Listas que se editan como texto, una por línea */
+const lines = s => s.split("\n").map(x => x.trim()).filter(Boolean);
+const pair = (s, a, b) => lines(s).map(l => { const [x, ...y] = l.split("|"); return { [a]: x.trim(), [b]: y.join("|").trim() }; });
+const ytId = s => { const m = s.match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : s; };
+const LISTS = {
+  bio:     { to: v => (v || []).join("\n\n"), from: s => s.split(/\n\s*\n/).map(x => x.trim()).filter(Boolean) },
+  lines:   { to: v => (v || []).join("\n"), from: lines },
+  videos:  { to: v => (v || []).map(i => "https://www.youtube.com/watch?v=" + i).join("\n"), from: s => lines(s).map(ytId) },
+  datos:   { to: v => (v || []).map(x => x.t + " | " + x.d).join("\n"), from: s => pair(s, "t", "d") },
+  canales: { to: v => (v || []).map(x => x.nombre + " | " + (x.link || "")).join("\n"), from: s => pair(s, "nombre", "link") },
+};
+
+const SCHEMA = [
+  ["Datos generales", [
+    ["nombre", "Nombre artístico", "text"],
+    ["lema", "Lema", "text", "La frase corta debajo del nombre."],
+    ["intro", "Presentación corta", "text"],
+    ["acento", "Color de acento", "color"],
+    ["titulo", "Título de la pestaña del navegador", "text"],
+    ["descripcion", "Descripción para Google", "area"]]],
+  ["Fotos principales", [
+    ["heroFoto", "Foto de portada (mejor cuadrada)", "img"],
+    ["bioFoto", "Foto de la bio (mejor vertical)", "img"]]],
+  ["Bio", [
+    ["bio", "Párrafos de la bio", "area:bio", "Separá los párrafos con una línea en blanco."],
+    ["datos", "Datos rápidos", "area:datos", "Uno por línea, así: Título | Valor"],
+    ["textos.bioProductoras", "Título de la lista de productoras", "text"],
+    ["productoras", "Productoras", "area:lines", "Una por línea."],
+    ["textos.bioLineup", "Título de la lista de artistas", "text"],
+    ["lineup", "Artistas con los que compartió cabina", "area:lines", "Uno por línea."]]],
+  ["SoundCloud", [
+    ["soundcloud", "Link del perfil", "text", "Vacío = la sección no se muestra."],
+    ["textos.scSub", "Texto de la sección", "text"]]],
+  ["Videos de YouTube", [
+    ["videos", "Videos", "area:videos", "Uno por línea. Pegá el link completo (youtube.com, youtu.be o Shorts)."],
+    ["textos.videosSub", "Texto de la sección", "text"]]],
+  ["Producciones en otros canales", [
+    ["canales", "Canales", "area:canales", "Uno por línea, así: Nombre | link. El link puede quedar vacío."],
+    ["textos.canalesSub", "Texto de la sección", "text"]]],
+  ["Galería de fotos", [
+    ["fotos", "", "gal"],
+    ["textos.fotosSub", "Texto de la sección", "text"]]],
+  ["Contacto", [
+    ["email", "Email de contacto", "text"],
+    ["instagram", "Link de Instagram", "text"],
+    ["textos.contactoSub", "Texto de la sección", "text"],
+    ["footer", "Pie de página", "text"]]],
+];
+
+function imgBox(k, lab) {
+  const pic = h("img", { alt: "" }), inp = h("input", { type: "file", accept: "image/*" });
+  const draw = () => { const v = get(k); pic.src = v || ""; pic.hidden = !v; };
+  inp.onchange = async () => { if (inp.files[0]) { set(k, await shrink(inp.files[0])); draw(); } };
+  const rm = h("button", { class: "g", type: "button", onclick: () => { set(k, ""); draw(); } }, "Quitar");
+  draw();
+  return h("label", {}, lab, h("div", { class: "img" }, pic, inp, rm));
+}
+
+function gal() {
+  const box = h("div"), add = h("input", { type: "file", accept: "image/*", multiple: "" });
+  const draw = () => box.replaceChildren(...(D.fotos || []).map((f, i, a) => {
+    const mv = d => { [a[i], a[i + d]] = [a[i + d], a[i]]; refresh(); draw(); };
+    return h("div", { class: "ph" },
+      h("img", { src: f.src, alt: "" }),
+      h("div", { class: "g2" },
+        h("input", { type: "text", value: f.alt || "", placeholder: "Descripción de la foto", oninput: e => { f.alt = e.target.value; refresh(); } }),
+        h("input", { type: "text", value: f.pos || "", placeholder: "Encuadre (opcional), ej: center 40%", oninput: e => { f.pos = e.target.value; refresh(); } })),
+      h("div", { class: "mv" },
+        h("button", { class: "g", type: "button", "aria-label": "Subir", ...(i ? {} : { disabled: "" }), onclick: () => mv(-1) }, "▲"),
+        h("button", { class: "g", type: "button", "aria-label": "Bajar", ...(i < a.length - 1 ? {} : { disabled: "" }), onclick: () => mv(1) }, "▼"),
+        h("button", { class: "g", type: "button", onclick: () => { a.splice(i, 1); refresh(); draw(); } }, "✕")));
+  }));
+  add.onchange = async () => {
+    D.fotos = D.fotos || [];
+    for (const f of add.files) D.fotos.push({ src: await shrink(f), alt: "", pos: "" });
+    refresh(); draw(); add.value = "";
+  };
+  draw();
+  return h("div", {}, box, h("label", {}, "Agregar fotos", add));
+}
+
+function field([k, lab, type, hint]) {
+  if (type === "gal") return gal();
+  if (type === "img") return imgBox(k, lab);
+  let el;
+  if (type.startsWith("area")) {
+    const c = LISTS[type.split(":")[1]];
+    el = h("textarea", { rows: c ? 6 : 3 });
+    el.value = c ? c.to(get(k)) : get(k) || "";
+    el.oninput = () => set(k, c ? c.from(el.value) : el.value);
+  } else {
+    el = h("input", { type });
+    el.value = get(k) || (type === "color" ? "#ff2d46" : "");
+    el.oninput = () => set(k, el.value);
+    if (type === "text") el.setAttribute("autocapitalize", "none");
+  }
+  return h("label", {}, lab, ...(hint ? [h("small", {}, hint)] : []), el);
+}
+
+function build() {
+  $("#f").replaceChildren(...SCHEMA.map(([t, fs], i) => {
+    const d = h("details", { class: "card", "data-k": [...new Set(fs.map(f => top(f[0])))].join(" ") }, h("summary", {}, t), h("div", { class: "body" }, ...fs.map(field)));
+    if (i === 0) d.open = true;
+    return d;
+  }));
+  refresh();
+}
+
+/* Marca las secciones modificadas y muestra la barra de "cambios sin publicar" */
+function refresh() {
+  const o = JSON.parse(O), ch = k => JSON.stringify(D[k]) !== JSON.stringify(o[k]);
+  document.querySelectorAll("details").forEach(d => d.classList.toggle("dirty", d.dataset.k.split(" ").some(ch)));
+  const n = [...new Set([...Object.keys(D), ...Object.keys(o)])].filter(ch).length;
+  $("#bar").classList.toggle("on", n > 0);
+  $("#cnt").textContent = n + (n === 1 ? " cambio sin publicar" : " cambios sin publicar");
+}
+
+$("#undo").onclick = () => { D = JSON.parse(O); build(); };
+
+$("#save").onclick = async () => {
+  if (!(D.nombre || "").trim()) return say("Falta el nombre artístico.", false);
+  const btn = $("#save"); btn.disabled = true; btn.textContent = "Publicando…";
+  try {
+    const C = JSON.parse(JSON.stringify(D)), stamp = Date.now().toString(36);
+    let n = 0;
+    const up = async v => {   // sube las fotos nuevas a assets/ y devuelve su ruta
+      if (!/^data:image/.test(v || "")) return v;
+      const name = `assets/foto-${stamp}-${++n}.jpg`;
+      const r = await api(name, { method: "PUT", body: JSON.stringify({ message: "Foto nueva desde el panel", content: v.split(",")[1] }) });
+      if (!r.ok) throw new Error("No se pudo subir una foto (" + r.status + ").");
+      return name;
+    };
+    C.heroFoto = await up(C.heroFoto); C.bioFoto = await up(C.bioFoto);
+    for (const f of C.fotos || []) f.src = await up(f.src);
+    const r = await api(FILE, {
+      method: "PUT",
+      body: JSON.stringify({ message: "Press kit: cambios desde el panel", content: b64enc("window.SITE = " + JSON.stringify(C, null, 2) + ";\n"), sha: sha || undefined })
+    });
+    if (r.status === 409 || r.status === 422) throw new Error("El contenido cambió desde otro lado. Recargá la página y volvé a probar.");
+    if (!r.ok) throw new Error("No se pudo publicar (" + r.status + "). ¿El token tiene permiso de escritura?");
+    sha = (await r.json()).content.sha; legacy = false; D = C; O = JSON.stringify(D); build();
+    say("Publicado ✔ En 1–2 minutos lo ve todo el mundo.");
+  } catch (e) { say(e.message, false); }
+  btn.disabled = false; btn.textContent = "Publicar";
+};
+
+$("#go").onclick = () => {
+  repo = $("#repo").value.trim().replace(/^https?:\/\/github\.com\//, "").replace(/\.git$/, "").replace(/\/$/, "");
+  token = $("#tok").value.trim();
+  if (!/^[\w.-]+\/[\w.-]+$/.test(repo) || !token) return say("Completá repositorio (usuario/repo) y token.", false);
+  LSset("pk_repo", repo); LSset("pk_tok", token); $("#tok").value = ""; load();
+};
+$("#out").onclick = () => { LSset("pk_tok", ""); token = ""; $("#panel").classList.add("hide"); $("#bar").classList.remove("on"); $("#login").classList.remove("hide"); $("#repo").value = repo; };
+
+window.addEventListener("beforeunload", e => { if ($("#bar").classList.contains("on")) { e.preventDefault(); e.returnValue = ""; } });
+
+(token && repo) ? load() : (($("#repo").value = repo), $("#login").classList.remove("hide"));
+</script>
+</body>
+</html>

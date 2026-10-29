@@ -1,0 +1,104 @@
+window.SITE = {
+  "nombre": "Franco Sánchez",
+  "lema": "Indie Dance oscuro. Groove pesado. Drops bien marcados.",
+  "intro": "DJ de General Roca, con base en el Alto Valle.",
+  "acento": "#ff2d46",
+  "titulo": "Franco Sánchez | DJ Indie Dance | Press Kit",
+  "descripcion": "Franco Sánchez, DJ de General Roca (Alto Valle). Indie Dance oscuro, groove pesado y drops bien marcados.",
+  "heroFoto": "assets/hero.jpg",
+  "bioFoto": "assets/bio.jpg",
+  "bio": [
+    "Franco Sánchez es un DJ de General Roca, con base en el Alto Valle, con un sonido centrado en el Indie Dance oscuro, groove pesado y drops bien marcados.",
+    "También incursiona en el Progressive House y el Melodic Techno, aunque su identidad se apoya principalmente en ritmos oscuros, sonidos profundos y una fuerte presencia del groove.",
+    "Ha sumado experiencias en clubes del Alto Valle y presentaciones como invitado, además de experiencias en Buenos Aires Capital. Ha trabajado junto a productoras como Black Beat, Natural Swing, B2B Sessions y One More, y ha compartido cabina con artistas como Martin Angrissano, Caitto, Gueva, Mayro y Nicolás Van Orton.",
+    "Su propuesta busca un balance entre groove, energía y una estética underground, consolidando una identidad propia dentro de la escena regional."
+  ],
+  "datos": [
+    {
+      "t": "Sonido",
+      "d": "Indie Dance oscuro"
+    },
+    {
+      "t": "También toca",
+      "d": "Progressive House y Melodic Techno"
+    },
+    {
+      "t": "Base",
+      "d": "General Roca, Alto Valle"
+    },
+    {
+      "t": "Presentaciones",
+      "d": "Clubes del Alto Valle y Buenos Aires Capital"
+    }
+  ],
+  "productoras": [
+    "Black Beat",
+    "Natural Swing",
+    "B2B Sessions",
+    "One More"
+  ],
+  "lineup": [
+    "Martin Angrissano",
+    "Caitto",
+    "Gueva",
+    "Mayro",
+    "Nicolás Van Orton"
+  ],
+  "soundcloud": "https://soundcloud.com/franco-sanchez-24",
+  "videos": [
+    "ddVLRmnK3dw",
+    "ulpDMl9_QSM"
+  ],
+  "canales": [
+    {
+      "nombre": "Natural Swing",
+      "link": ""
+    },
+    {
+      "nombre": "Black Beat",
+      "link": ""
+    },
+    {
+      "nombre": "B2B Sessions",
+      "link": ""
+    },
+    {
+      "nombre": "One More",
+      "link": ""
+    }
+  ],
+  "fotos": [
+    {
+      "src": "assets/g-pantallas.jpg",
+      "alt": "Franco Sánchez en cabina con su nombre en las pantallas",
+      "pos": ""
+    },
+    {
+      "src": "assets/g-verde.jpg",
+      "alt": "Franco Sánchez mezclando con luz verde",
+      "pos": ""
+    },
+    {
+      "src": "assets/g-azul.jpg",
+      "alt": "Franco Sánchez en cabina con luces azules",
+      "pos": ""
+    },
+    {
+      "src": "assets/g-exterior.jpg",
+      "alt": "Franco Sánchez mezclando al aire libre de noche",
+      "pos": "center 42%"
+    }
+  ],
+  "email": "fsanchezbooking@gmail.com",
+  "instagram": "https://www.instagram.com/frsanchez_/",
+  "footer": "© 2026 Franco Sánchez",
+  "textos": {
+    "bioProductoras": "Productoras con las que trabajó",
+    "bioLineup": "Compartió cabina con",
+    "scSub": "Sets y producciones de Franco, directo desde su perfil.",
+    "videosSub": "Franco en cabina. Tocá el video para reproducirlo.",
+    "canalesSub": "Sus sets y producciones, subidos por las productoras con las que trabajó.",
+    "fotosSub": "En cabina.",
+    "contactoSub": "Fechas, colaboraciones y prensa."
+  }
+};
